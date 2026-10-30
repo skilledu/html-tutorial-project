@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skilled.u - HTML Tutorial Reader</title>
+  <meta name="description" content="Read and learn HTML chapters interactively. Access our comprehensive HTML course database on Skilled.u." />
+  <meta property="og:title" content="Skilled.u - HTML Tutorial Reader" />
+  <meta property="og:description" content="Read and learn HTML chapters interactively. Access our comprehensive HTML course database on Skilled.u." />
+  <meta property="og:image" content="assets/images/skilledu-logo.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Skilled.u - HTML Tutorial Reader" />
+  <meta name="twitter:description" content="Read and learn HTML chapters interactively. Access our comprehensive HTML course database on Skilled.u." />
+  <meta name="robots" content="index, follow" />
+  <!-- REPLACE WITH ACTUAL DOMAIN -->
+  <link rel="canonical" href="https://example.com/tutorial.html">
+  <meta name="author" content="Skilled.u">
+  <meta http-equiv="content-language" content="en">
+  <meta name="theme-color" content="#0b66c3">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- VS Code Dark theme for Highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+  <!-- CodeMirror for Live Editor -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+</head>
+<body>
+  <h2 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Skilled.u - HTML Tutorial Reader</h2>
+
+  <!-- Sticky Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <!-- Mobile Sidebar Toggle -->
+        <button class="burger-menu" id="sidebarToggle" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="index.html" class="logo-link">
+          <img src="assets/images/skilledu-logo-cropped.png" alt="Skilled.u HTML Tutorial Logo" class="navbar-logo navbar-logo-light">
+          <img src="assets/images/Skilledu Logo White-cropped.png" alt="Skilled.u HTML Tutorial Logo" class="navbar-logo navbar-logo-dark">
+        </a>
+      </div>
+      
+      <div class="header-actions">
+        <nav class="content-navigation" style="margin: 0; margin-right: 15px; background: transparent; padding: 0; box-shadow: none; border: none;">
+          <button class="nav-link-btn prev-btn" id="prevBtn" onclick="navigateChapter(-1)" style="padding: 6px 12px; font-size: 0.9rem; border: none; box-shadow: none; background: transparent; outline: none; text-decoration: none;">
+            <i class="fa-solid fa-arrow-left"></i> Prev
+          </button>
+          <button class="nav-link-btn next-btn" id="nextBtn" onclick="navigateChapter(1)" style="padding: 6px 12px; font-size: 0.9rem; margin-left: 10px; border: none; box-shadow: none; background: transparent; outline: none; text-decoration: none;">
+            Next <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </nav>
+        
+        <a href="index.html" class="back-home-btn"><i class="fa-solid fa-house" style="margin-right: 5px;"></i> Home</a>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon moon-icon"></i>
+          <i class="fa-solid fa-sun sun-icon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Shell Layout -->
+  <div class="tutorial-layout">
+    
+    <!-- Sidebar Overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar Left -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-search" id="sidebarSearch" placeholder="Search topics..." oninput="filterSidebar()">
+        <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <ul class="sidebar-menu" id="sidebarMenu">
+        <!-- Dynamic sidebar elements loaded from chapters.js -->
+      </ul>
+    </aside>
+
+    <!-- Main Content Panel Right -->
+    <main class="content-area" id="contentArea">
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <ol class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="tutorial.html#ch1">HTML Tutorial</a></li>
+          <li class="breadcrumb-item active" aria-current="page" id="breadcrumbCurrentChapter">HTML – OVERVIEW</li>
+        </ol>
+      </nav>
+      <!-- Breadcrumb JSON-LD -->
+      <script type="application/ld+json" id="breadcrumbSchema">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://example.com/index.html"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "HTML Tutorial",
+          "item": "https://example.com/tutorial.html#ch1"
+        },{
+          "@type": "ListItem",
+          "position": 3,
+          "name": "HTML – OVERVIEW",
+          "item": "https://example.com/tutorial.html#ch1"
+        }]
+      }
+      </script>
+      <div class="tutorial-content">
+        <!-- Chapter Content Container -->
+        <article id="chapterContainer">
+          <div class="chapter-header-box">
+  <div class="chapter-tag">Chapter 1 of 38</div>
+  <h1 class="main-chapter-title">HTML – OVERVIEW</h1>
+</div>
+<div class="chapter-body">
+  <ol class="tutorial-list"><li>HTML stands for Hypertext Markup Language, and it is the most widely used language to write Web Pages.</li></ol>
+<ul class="tutorial-list"><li>Hypertext refers to the way in which Web pages (HTML documents) are linked together. Thus, the link available on a webpage is called Hypertext.</li><li>As its <code class="inline-attr">name</code> suggests, HTML is a Markup Language which means you use HTML to simply "mark-up" a text document with tags that tell a Web browser how to structure it to display. Originally, HTML was developed with the intent of defining the structure of documents like headings, paragraphs, lists, and so forth to facilitate the sharing of scientific information between researchers. Now, HTML is being widely used to format web pages with the help of different tags available in HTML language. Basic HTML Document In its simplest form, following is an example of an HTML document:</li></ul>
+
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span>Example Code</span>
+                    <div class="code-actions">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="try-btn" onclick="tryCode(this)">Try It Yourself</button>
+                    </div>
+                </div>
+                <pre class="code-preview"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;This is document title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;Document content goes here.....&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <textarea class="raw-code-holder" style="display:none;">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;This is document title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;Document content goes here.....&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+            </div>
+            
+<p class="tutorial-para">Either you can use Try it option available at the top right corner of the code box to check the result of this HTML code, or let's save it in an HTML file test.htm using your favorite text editor. Finally open it using a web browser like Internet Explorer or Google Chrome, or Firefox etc. It must show the following output:</p>
+<h2 class="section-heading">HTML Tags</h2>
+<p class="tutorial-para">As told earlier, HTML is a markup language and makes use of various tags to format the content. These tags are enclosed within angle braces <code class="inline-tag">&lt;Tag Name&gt;</code>. Except few tags, most of the tags have their corresponding closing tags. For example, <code class="inline-tag">&lt;html&gt;</code> has its closing tag<code class="inline-tag">&lt;/html&gt;</code> and <code class="inline-tag">&lt;body&gt;</code> tag has its closing tag <code class="inline-tag">&lt;/body&gt;</code> tag etc. Above example of HTML document uses the following tags:</p>
+<h3 class="section-heading">Tag Description</h3>
+<p class="tutorial-para"><code class="inline-tag">&lt;!DOCTYPE...&gt;</code> This tag defines the document <code class="inline-attr">type</code> and HTML version. This tag encloses the complete HTML document and mainly comprises</p>
+
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span>Example Code</span>
+                    <div class="code-actions">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="try-btn" onclick="tryCode(this)">Try It Yourself</button>
+                    </div>
+                </div>
+                <pre class="code-preview"><code class="language-html">&lt;html&gt; of document header which is represented by &lt;head&gt;...&lt;/head&gt; and
+document body which is represented by &lt;body&gt;...&lt;/body&gt; tags.
+This tag represents the document's header which can keep other HTML
+&lt;head&gt;
+tags like &lt;title&gt;, &lt;link&gt; etc.
+The &lt;title&gt; tag is used inside the &lt;head&gt; tag to mention the
+&lt;title&gt;
+document title.
+This tag represents the document's body which keeps other HTML tags
+&lt;body&gt;
+like &lt;h1&gt;, &lt;div&gt;, &lt;p&gt; etc.
+&lt;h1&gt; This tag represents the heading.
+&lt;p&gt; This tag represents a paragraph.
+
+To learn HTML, you will need to study various tags and understand how they behave, while
+formatting a textual document. Learning HTML is simple as users have to learn the usage
+of different tags in order to format the text or images to make a beautiful webpage.
+World Wide Web Consortium (W3C) recommends to use lowercase tags starting from HTML
+4.
+HTML Document Structure
+A typical HTML document will have the following structure:
+Document declaration tag
+&lt;html&gt;
+&lt;head&gt;
+Document header related tags
+&lt;/head&gt;
+&lt;body&gt;
+Document body related tags
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <textarea class="raw-code-holder" style="display:none;">&lt;html&gt; of document header which is represented by &lt;head&gt;...&lt;/head&gt; and
+document body which is represented by &lt;body&gt;...&lt;/body&gt; tags.
+This tag represents the document's header which can keep other HTML
+&lt;head&gt;
+tags like &lt;title&gt;, &lt;link&gt; etc.
+The &lt;title&gt; tag is used inside the &lt;head&gt; tag to mention the
+&lt;title&gt;
+document title.
+This tag represents the document's body which keeps other HTML tags
+&lt;body&gt;
+like &lt;h1&gt;, &lt;div&gt;, &lt;p&gt; etc.
+&lt;h1&gt; This tag represents the heading.
+&lt;p&gt; This tag represents a paragraph.
+
+To learn HTML, you will need to study various tags and understand how they behave, while
+formatting a textual document. Learning HTML is simple as users have to learn the usage
+of different tags in order to format the text or images to make a beautiful webpage.
+World Wide Web Consortium (W3C) recommends to use lowercase tags starting from HTML
+4.
+HTML Document Structure
+A typical HTML document will have the following structure:
+Document declaration tag
+&lt;html&gt;
+&lt;head&gt;
+Document header related tags
+&lt;/head&gt;
+&lt;body&gt;
+Document body related tags
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+            </div>
+            
+<p class="tutorial-para">We will study all the header and body tags in subsequent chapters, but for now let's see what is document declaration tag.</p>
+<h3 class="section-heading">The <code class="inline-tag">&lt;!DOCTYPE&gt;</code> Declaration</h3>
+<p class="tutorial-para">The <code class="inline-tag">&lt;!DOCTYPE&gt;</code> declaration tag is used by the web browser to understand the version of the HTML used in the document. Current version of HTML is 5 and it makes use of the following declaration:</p>
+
+            <div class="code-block-container">
+                <div class="code-block-header">
+                    <span>Example Code</span>
+                    <div class="code-actions">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="try-btn" onclick="tryCode(this)">Try It Yourself</button>
+                    </div>
+                </div>
+                <pre class="code-preview"><code class="language-html">&lt;!DOCTYPE html&gt;
+There are many other declaration types which can be used in HTML document depending
+on what version of HTML is being used. We will see more details on this while discussing
+&lt;!DOCTYPE...&gt; tag along with other HTML tags.
+</code></pre>
+                <textarea class="raw-code-holder" style="display:none;">&lt;!DOCTYPE html&gt;
+There are many other declaration types which can be used in HTML document depending
+on what version of HTML is being used. We will see more details on this while discussing
+&lt;!DOCTYPE...&gt; tag along with other HTML tags.
+</textarea>
+            </div>
+            
+<h2 class="section-heading">Practical Examples</h2>
+<div class="code-block-container">
+  <div class="code-block-header">
+    <span>Example Code</span>
+    <div class="code-actions">
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      <button class="try-btn" onclick="tryCode(this)">Try It Yourself</button>
+    </div>
+  </div>
+  <pre class="code-preview"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First HTML Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome to HTML Overview&lt;/h1&gt;
+  &lt;p&gt;This is a basic structure of an HTML document. It contains a head and a body.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <textarea class="raw-code-holder" style="display:none;">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First HTML Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome to HTML Overview&lt;/h1&gt;
+  &lt;p&gt;This is a basic structure of an HTML document. It contains a head and a body.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+</div>
+
+<h2 class="section-heading">Common Mistakes</h2>
+<ul class="tutorial-list">
+  <li><strong>Forgetting the DOCTYPE declaration</strong> — Omitting &lt;!DOCTYPE html&gt; forces browsers into "quirks mode", causing unpredictable rendering issues.</li>
+  <li><strong>Missing closing tags</strong> — Forgetting to close tags like &lt;/html&gt; or &lt;/body&gt; can break the document tree structure.</li>
+  <li><strong>Placing visible content in the &lt;head&gt;</strong> — The &lt;head&gt; section is for metadata. Visible elements like text or images must go inside the &lt;body&gt;.</li>
+  <li><strong>Incorrect nesting of tags</strong> — Opening a tag inside another but closing it outside (e.g., &lt;p&gt;&lt;strong&gt;text&lt;/p&gt;&lt;/strong&gt;) leads to invalid HTML.</li>
+</ul>
+
+<h2 class="section-heading">Best Practices</h2>
+<ul class="tutorial-list">
+  <li><strong>Always include a DOCTYPE</strong> — Start every HTML document with &lt;!DOCTYPE html&gt; to ensure standard mode rendering.</li>
+  <li><strong>Use lowercase for tag names</strong> — Although HTML5 is case-insensitive, using lowercase (e.g., &lt;body&gt; instead of &lt;BODY&gt;) is standard practice and easier to read.</li>
+  <li><strong>Indent nested elements</strong> — Properly indent child elements to make the HTML structure readable and maintainable.</li>
+  <li><strong>Include a &lt;title&gt; tag</strong> — Always specify a title inside the &lt;head&gt; for SEO and browser tab identification.</li>
+</ul>
+
+<h2 class="section-heading">Interview Questions</h2>
+<p class="tutorial-para"><strong>Q: What does HTML stand for and what is its primary purpose?</strong></p>
+<p class="tutorial-para">A: HTML stands for HyperText Markup Language. Its primary purpose is to define the structure and content of a web page using markup tags.</p>
+<p class="tutorial-para"><strong>Q: What is the purpose of the &lt;!DOCTYPE html&gt; declaration?</strong></p>
+<p class="tutorial-para">A: It instructs the web browser about the version of HTML the page is written in (HTML5 in this case) and ensures the browser renders the page in "standards mode" rather than "quirks mode".</p>
+<p class="tutorial-para"><strong>Q: Differentiate between the &lt;head&gt; and &lt;body&gt; tags.</strong></p>
+<p class="tutorial-para">A: The &lt;head&gt; element contains metadata, title, and links to external resources like CSS or scripts. It is not displayed on the page. The &lt;body&gt; element contains all the visible content of the webpage, such as headings, paragraphs, and images.</p>
+<p class="tutorial-para"><strong>Q: Is HTML a programming language?</strong></p>
+<p class="tutorial-para">A: No, HTML is not a programming language because it does not have logic, loops, or variables. It is a markup language used purely for structuring content.</p>
+<p class="tutorial-para"><strong>Q: What happens if you forget to close an HTML tag?</strong></p>
+<p class="tutorial-para">A: While modern browsers try to auto-correct missing closing tags, it can lead to unexpected rendering, layout breakage, and invalid DOM structures.</p>
+
+<h2 class="section-heading">Summary</h2>
+<p class="tutorial-para">HTML is the foundational building block of the web, used to define the structure of web pages. A standard HTML document requires a DOCTYPE, an &lt;html&gt; root element, a &lt;head&gt; for metadata, and a &lt;body&gt; for visible content. Understanding this basic skeleton is crucial before moving on to more complex tags and attributes.</p>
+</div>
+        </article>
+
+      </div>
+
+      <!-- Footer Section inside Scroll -->
+      <footer class="footer">
+        <div class="container">
+          <p>&copy; 2026 Skilled.u Tutorial. All rights reserved. Interactive HTML course database.</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Live Code Playground Modal -->
+  <div class="playground-modal" id="playgroundModal">
+    <div class="playground-container">
+      <div class="playground-header">
+        <div class="playground-title">
+          <i class="fa-solid fa-code" style="color: var(--primary-color);"></i>
+          <span>Live Editor Sandbox</span>
+        </div>
+        <div class="playground-actions">
+          <button class="playground-run-btn" onclick="runPlaygroundCode()">
+            <i class="fa-solid fa-play"></i> Run Code
+          </button>
+          <button class="playground-run-btn" style="background-color: var(--secondary-color); color: var(--heading-color);" onclick="resetPlaygroundCode()">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+          <button class="playground-close-btn" onclick="closePlayground()">Close</button>
+        </div>
+      </div>
+      <div class="playground-workspace">
+        <div class="editor-pane">
+          <div class="editor-pane-header">HTML Editor</div>
+          <textarea class="code-editor-textarea" id="playgroundTextarea" spellcheck="false" placeholder="Write code snippet here..."></textarea>
+        </div>
+        <div class="preview-pane">
+          <div class="preview-pane-header">Live Preview</div>
+          <div id="playgroundError" class="playground-error" style="display: none;"></div>
+          <iframe class="preview-iframe" id="playgroundPreviewFrame"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Database & Main App Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"></script>
+  <script src="assets/js/chapters.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

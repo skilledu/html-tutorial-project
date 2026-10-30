@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# REPLACE WITH ACTUAL DOMAIN
+Sitemap: https://example.com/sitemap.xml
