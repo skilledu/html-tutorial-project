@@ -146,6 +146,38 @@ body.dark-mode .custom-cursor {
   transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
 
+/* Finisher Header Canvas Integration */
+.main-header.finisher-header {
+  position: sticky;
+  overflow: hidden;
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 20px rgba(37, 88, 162, 0.25);
+}
+
+.main-header.finisher-header .header-container {
+  position: relative;
+  z-index: 2;
+}
+
+.main-header.finisher-header .navbar-logo-light {
+  display: none !important;
+}
+
+.main-header.finisher-header .navbar-logo-dark {
+  display: block !important;
+}
+
+.main-header.finisher-header .theme-toggle-btn {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+.main-header.finisher-header .theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
