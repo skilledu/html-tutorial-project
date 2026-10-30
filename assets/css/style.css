@@ -459,33 +459,20 @@ body.dark-mode .card::after {
 
 .chapter-card:hover,
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
+  transform: translateY(-5px);
+  background-color: var(--primary-color);
+  background: linear-gradient(135deg, #0b66c3 0%, #1573d8 100%);
+  border-color: #0b66c3;
+  box-shadow: 0 10px 25px rgba(11, 102, 195, 0.28);
 }
 
+/* Hide corner pseudo-elements smoothly on hover so background takes over cleanly */
 .chapter-card:hover::before,
 .chapter-card:hover::after,
 .card:hover::before,
 .card:hover::after {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 12px;
-  background-color: var(--primary-color);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.chapter-card:hover::after,
-.card:hover::after {
-  content: "Read Chapter →";
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 600;
-  white-space: nowrap;
-  letter-spacing: 0.3px;
-  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .chapter-card .chapter-number,
@@ -493,14 +480,27 @@ body.dark-mode .card::after {
 .chapter-card .card-footer {
   position: relative;
   z-index: 1;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.chapter-card:hover .chapter-number,
-.chapter-card:hover .chapter-title,
+/* Enlarge original text slightly and switch to clean white/yellow contrast on hover */
+.chapter-card:hover .chapter-number {
+  color: #ffc224;
+  transform: scale(1.04);
+  transform-origin: left center;
+}
+
+.chapter-card:hover .chapter-title {
+  color: #ffffff;
+  transform: scale(1.07);
+  transform-origin: left center;
+}
+
 .chapter-card:hover .card-footer {
-  opacity: 0;
-  transform: scale(0.96);
+  color: #ffffff;
+  gap: 8px;
+  transform: scale(1.03);
+  transform-origin: left center;
 }
 
 .chapter-card .chapter-number {
@@ -519,7 +519,7 @@ body.dark-mode .card::after {
   line-height: 1.35;
   margin-bottom: 0.8rem;
   color: var(--heading-color);
-  transition: color var(--transition-speed);
+  transition: color var(--transition-speed), transform 0.3s ease;
 }
 
 .chapter-card .card-footer {
@@ -531,7 +531,7 @@ body.dark-mode .card::after {
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: gap 0.2s;
+  transition: gap 0.2s, color var(--transition-speed), transform 0.3s ease;
 }
 
 /* Core Interface: Sidebar + Main Panel */
