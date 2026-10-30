@@ -132,7 +132,7 @@
       Object.keys(HTML_TUTORIAL_DATA).forEach((key, index) => {
         const item = HTML_TUTORIAL_DATA[key];
         const card = document.createElement('div');
-        card.className = 'chapter-card';
+        card.className = 'chapter-card card';
         card.onclick = () => {
           window.location.href = `tutorial.html#${key}`;
         };
